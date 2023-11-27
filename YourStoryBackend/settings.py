@@ -61,6 +61,27 @@ CORS_ALLOWED_ORIGINS = [
     "https://yourstory.pythonanywhere.com",
 ]
 
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'OPTIONS',
+'PATCH',
+'POST',
+'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+]
+
 ROOT_URLCONF = 'YourStoryBackend.urls'
 
 #for api.backends and setting the letter switch(UPPER/LOWER)
