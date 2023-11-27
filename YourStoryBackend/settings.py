@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
-    'rest_framework',
     'corsheaders',
+    'rest_framework',
     'api'
 ]
 
@@ -59,8 +59,7 @@ MIDDLEWARE = [
 CORS_ALLOW_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:19006',
-    "https://yetublog.com",
-    "https://yetublog-backend.vercel.app/"
+    "https://yourstory.pythonanywhere.com",
 ]
 CORS_ALLOW_METHODS = ['GET','POST','DELETE','UPDATE','OPTIONS']
 CORS_ALLOW_HEADERS = ['Content-Type','Authorization']
