@@ -46,9 +46,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -56,32 +56,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://yourstory.pythonanywhere.com",
-    'http://localhost:19006/'
+    'http://localhost:19006',
+    "https://yetublog.com",
+    "https://yetublog-backend.vercel.app/"
 ]
-
-CORS_ALLOW_METHODS = [
-'DELETE',
-'GET',
-'OPTIONS',
-'PATCH',
-'POST',
-'PUT',
-]
-
-CORS_ALLOW_HEADERS = [
-'accept',
-'accept-encoding',
-'authorization',
-'content-type',
-'dnt',
-'origin',
-'user-agent',
-'x-csrftoken',
-'x-requested-with',
-]
+CORS_ALLOW_METHODS = ['GET','POST','DELETE','UPDATE','OPTIONS']
+CORS_ALLOW_HEADERS = ['Content-Type','Authorization']
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'YourStoryBackend.urls'
 
