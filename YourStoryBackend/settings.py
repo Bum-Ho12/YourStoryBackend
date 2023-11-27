@@ -65,6 +65,7 @@ CORS_ALLOWED_ORIGINS = [
     # 'http://localhost:19006',
     # "https://yourstory.pythonanywhere.com",
 ]
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_METHODS = ['GET','POST','DELETE','UPDATE','OPTIONS','PUT']
 CORS_ALLOW_HEADERS = ['Content-Type','Authorization']
 CORS_ALLOW_CREDENTIALS = True
