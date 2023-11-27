@@ -61,6 +61,10 @@ MIDDLEWARE = [
 
 # CORS_ALLOW_ORIGINS = False
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:19006',
+    "https://yourstory.co.ke",
+]
 CORS_ALLOW_METHODS = ['GET','POST','DELETE','UPDATE','OPTIONS','PUT']
 CORS_ALLOW_HEADERS = ['Content-Type','Authorization']
 CORS_ALLOW_CREDENTIALS = True
@@ -162,8 +166,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = "media/"
-MEDIA_ROOT= 'media'
-STATIC_ROOT = "static"
+MEDIA_ROOT= '/home/yetublog/public_html/media'
+STATIC_ROOT = "/home/yetublog/public_html/static"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
