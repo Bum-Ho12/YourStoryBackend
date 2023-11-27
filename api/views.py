@@ -3,14 +3,14 @@ handles the views part of the backend.
 '''
 import datetime
 from rest_framework import status
-from django.shortcuts import render
-from .models import Blog, Subscriber,Account,ImageFile,ContentSection
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from  rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from  rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes,parser_classes
+from .models import Blog, Subscriber,Account,ImageFile,ContentSection
 from .serializers import BlogSerializer,SubscriberSerializer,AccountSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from  rest_framework.parsers import MultiPartParser, FormParser
+
 # Create your views here.
 
 
@@ -30,6 +30,7 @@ def registration_view(request):
             data['email'] = account.email
             data['username'] = account.username
             data['description']=account.description
+            # pylint: disable = E1101:no-member
             token = Token.objects.get(user=account).key
             data['token'] = token
             return Response(data, status= status.HTTP_201_CREATED)
@@ -61,6 +62,7 @@ def custom_login(request):
         user_token = user.auth_token.key
     # pylint: disable = W0702:bare-except
     except:
+        # pylint: disable = E1101:no-member
         user_token = Token.objects.create(user=user)
     data = {'token': user_token}
     data['email'] = user.email
@@ -73,6 +75,7 @@ def custom_login(request):
 # pylint: disable = W0613:unused-argument
 def all_blogs(request):
     '''fetches all blogs that have been published'''
+    # pylint: disable = E1101:no-member
     blogs = Blog.objects.all()
     sr= BlogSerializer(blogs, many = True)
     data = sr.data
@@ -82,6 +85,7 @@ def all_blogs(request):
 @permission_classes([AllowAny])
 # pylint: disable = W0613:unused-argument
 def all_subscribers(request):
+    # pylint: disable = E1101:no-member
     '''fetches all subscribers'''
     subscriber = Subscriber.objects.all()
     sr= SubscriberSerializer(subscriber, many = True)
@@ -104,6 +108,7 @@ def get_blog(request):
     '''fetches a blog by id'''
     # pylint: disable = W0622:redefined-builtin
     id = request.data.get('id')
+    # pylint: disable = E1101:no-member
     blog = Blog.objects.get(id = id)
     try:
         sr = BlogSerializer(blog)
@@ -121,6 +126,7 @@ def register_subscriber(request):
     subscriber_reg = SubscriberSerializer(data= request.data)
     if subscriber_reg.is_valid():
         subscriber_reg.save()
+        # pylint: disable = E1101:no-member
         sr_data = Subscriber.objects.get(email =request.data.get('email'))
         sr = SubscriberSerializer(sr_data)
         data = sr.data
@@ -145,13 +151,15 @@ def post_blog(request):
         request.data.pop('story')
         if blog_sr.is_valid():
             blog_sr.save(owner = request.user)
+            # pylint: disable = E1101:no-member
             obj =  Blog.objects.get(id = blog_sr.data['id'])
             context = blog_sr.data
             obj.frontImage = request.FILES.get('frontImage')
             obj.save()
             uploaded_images = []
-            for contentFile in content_files:
-                content = ImageFile.objects.create(media = contentFile)
+            for content_file in content_files:
+                # pylint: disable = E1101:no-member
+                content = ImageFile.objects.create(media = content_file)
                 uploaded_images.append(content)
             obj.contentImage.add(*uploaded_images)
             content_sections = []
@@ -177,6 +185,7 @@ def delete_blog(request):
     '''handles delete of a published blog'''
     # pylint: disable = W0622:redefined-builtin
     id = request.data.get('id')
+    # pylint: disable = E1101:no-member
     obj = Blog.objects.get(id = id)
     try:
         operation = obj.delete()
@@ -195,11 +204,13 @@ def delete_blog(request):
 # pylint: disable = W0613:unused-argument
 def get_latest_blogs(request):
     '''gets recently published blogs'''
+    # pylint: disable = E1101:no-member
     objs = Blog.objects.all()
     if len(objs) <6:
         sr_data = BlogSerializer(objs, many = True)
         return Response(data=sr_data.data,status=status.HTTP_302_FOUND)
     elif len(objs)>=6:
+        # pylint: disable = E1101:no-member
         blogs = Blog.objects.order_by('-id')[:6]
         sr_data = BlogSerializer(blogs, many = True)
         return Response(data=sr_data.data,status=status.HTTP_302_FOUND)
@@ -212,6 +223,7 @@ def get_latest_blogs(request):
 # pylint: disable = W0613:unused-argument
 def get_latest_blog(request):
     '''gets the latest blog(recently published)'''
+    # pylint: disable = E1101:no-member
     blog = Blog.objects.last()
     sr_data = BlogSerializer(blog)
     return Response(sr_data.data, status= status.HTTP_302_FOUND)
@@ -222,6 +234,7 @@ def get_latest_blog(request):
 def get_statistics(request):
     '''gets stats of the mentioned blog'''
     today = datetime.datetime.now()
+    # pylint: disable = E1101:no-member
     blogs = Blog.objects.all()
     subscribers = Subscriber.objects.all()
     monthly_subscribers = subscribers.filter(created_at__month__gte= today.month).count()
@@ -246,6 +259,7 @@ def get_statistics(request):
 @permission_classes([AllowAny])
 def count_views(request):
     '''returns the number of viewers that have read the blog'''
+    # pylint: disable = E1101:no-member
     blog = Blog.objects.get(id = request.data.get('id'))
     if blog:
         blog.views +=1
@@ -258,6 +272,7 @@ def count_views(request):
 @permission_classes([AllowAny])
 def count_likes(request):
     '''counts the number of likes a blog has gained'''
+    # pylint: disable = E1101:no-member
     blog = Blog.objects.get(id = request.data.get('id'))
     if blog:
         blog.likes +=1
@@ -270,6 +285,7 @@ def count_likes(request):
 @permission_classes([AllowAny])
 def count_dislikes(request):
     '''counts the number of dislikes a blog has received'''
+    # pylint: disable = E1101:no-member
     blog = Blog.objects.get(id = request.data.get('id'))
     if blog:
         blog.dislikes +=1
