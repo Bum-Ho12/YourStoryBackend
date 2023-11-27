@@ -59,6 +59,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://yourstory.pythonanywhere.com",
+    '*'
 ]
 
 CORS_ALLOW_METHODS = [
