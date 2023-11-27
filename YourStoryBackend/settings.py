@@ -59,14 +59,23 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ORIGINS = False
+# CORS_ALLOW_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:19006',
     "https://yourstory.pythonanywhere.com",
 ]
-CORS_ALLOW_METHODS = ['GET','POST','DELETE','UPDATE','OPTIONS']
-CORS_ALLOW_HEADERS = ['Content-Type','Authorization']
+CORS_ALLOW_METHODS = ['GET','POST','DELETE','UPDATE','OPTIONS','PUT']
+# CORS_ALLOW_HEADERS = ['Content-Type','Authorization']
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = (
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+)
 
 ROOT_URLCONF = 'YourStoryBackend.urls'
 
