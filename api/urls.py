@@ -6,6 +6,7 @@ from django.urls import path
 app_name = 'api'
 urlpatterns = [
     path('',views.all_blogs, name='blogs'),
+    path('user_blogs/',views.user_blogs, name= 'user_blogs'),
     path('subscribers/',views.all_subscribers, name= 'subscribers'),
     path('get_blog/', views.get_blog, name = 'blog'),
     path('create/', views.post_blog,name='create_post'),

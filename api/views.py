@@ -82,6 +82,17 @@ def all_blogs(request):
     return Response(data = data, status = status.HTTP_200_OK)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_blogs(request):
+    '''method returns the blogs created by a certain author'''
+    # pylint: disable = E1101:no-member
+    blogs = Blog.objects.filter(owner=request.user)
+    sr= BlogSerializer(blogs, many = True)
+    data = sr.data
+    return Response(data = data, status = status.HTTP_200_OK)
+
+
+@api_view(['GET'])
 @permission_classes([AllowAny])
 # pylint: disable = W0613:unused-argument
 def all_subscribers(request):
