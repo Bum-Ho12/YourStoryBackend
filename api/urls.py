@@ -1,11 +1,12 @@
 '''handles urls for the api'''
-from . import views
 from django.urls import path
+from . import views
 
-
+#pylint: disable = C0103
 app_name = 'api'
 urlpatterns = [
-    path('',views.all_blogs, name='blogs'),
+    path('',views.index, name='index'),
+    path('all/',views.all_blogs, name='blogs'),
     path('user_blogs/',views.user_blogs, name= 'user_blogs'),
     path('subscribers/',views.all_subscribers, name= 'subscribers'),
     path('get_blog/', views.get_blog, name = 'blog'),

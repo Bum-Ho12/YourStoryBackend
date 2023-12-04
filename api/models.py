@@ -8,6 +8,7 @@ from  django.dispatch import  receiver
 from  django.db.models.signals import post_save
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+from django.core.validators import MinValueValidator
 from  rest_framework.authtoken.models import Token
 # Create your models here.
 
@@ -116,6 +117,7 @@ class ImageFile(models.Model):
     '''
     class that handles Image data
     '''
+    index = models.IntegerField(validators=[MinValueValidator(1000)], null=True)
     media = models.ImageField()
 
     def __str__(self):
@@ -126,6 +128,7 @@ class ContentSection(models.Model):
     '''
     handles the content of the story.
     '''
+    index = models.IntegerField(validators=[MinValueValidator(1000)],null=True)
     story = models.TextField(max_length=21845)
     def __str__(self):
         return f"{self.story}"
@@ -137,7 +140,7 @@ class Blog(models.Model):
     story,likes, dislikes, views, created_at,commission.
     '''
     title = models.TextField(max_length=200)
-    frontImage  = models.ImageField()
+    frontImage  = models.ImageField(blank=True)
     contentImage   = models.ManyToManyField(ImageFile,blank=True)
     imageCopyRight = models.TextField(max_length= 100)
     owner       = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
@@ -145,10 +148,12 @@ class Blog(models.Model):
     likes       = models.IntegerField(default=0)
     dislikes    = models.IntegerField(default=0)
     views       = models.IntegerField(default=0)
-    created_at  = models.DateTimeField(auto_now=True)
+    created_at  = models.DateTimeField(auto_now_add=True)
+    updated_at  = models.DateTimeField(auto_now=True)
     commission  = models.BooleanField(default= True)
 
     class Meta:
+        '''meta class sets the plural for the model'''
         verbose_name_plural = 'Blogs'
 
     def __str__(self):

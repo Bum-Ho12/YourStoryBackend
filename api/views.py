@@ -8,11 +8,17 @@ from  rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from  rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes,parser_classes
+from django.shortcuts import render
 from .models import Blog, Subscriber,Account,ImageFile,ContentSection
 from .serializers import BlogSerializer,SubscriberSerializer,AccountSerializer
 
 # Create your views here.
 
+
+
+def index(request):
+    '''host main templates'''
+    return render(request, 'index.html')
 
 @api_view(['POST'])
 @permission_classes([AllowAny])

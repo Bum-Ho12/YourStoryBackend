@@ -1,8 +1,8 @@
 '''
 contains serializer classes that convert models to JSON format.
 '''
-from .models import Blog, Subscriber,Account
 from rest_framework import serializers
+from .models import Blog, Subscriber,Account
 
 class AccountSerializer(serializers.ModelSerializer):
     '''
@@ -50,7 +50,7 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         ''' meta class'''
         model = Blog
-        fields = ['id', 'title','owner','created_at','likes','dislikes','contentImage',
+        fields = ['id', 'title','owner','created_at','updated_at','likes','dislikes','contentImage',
                     'imageCopyRight','story','frontImage','views','commission']
         extra_kwargs = {
             'frontImage': {

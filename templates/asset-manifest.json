@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.js": "/static/js/main.790f9534.js",
+    "static/js/989.c54731e5.js": "/static/js/989.c54731e5.js",
+    "static/media/nairobi.jpg": "/static/media/nairobi.c872bc5ecef71935877d.jpg",
+    "static/media/MaterialCommunityIcons.ttf": "/static/media/MaterialCommunityIcons.5d42b4e60858731e7b65.ttf",
+    "static/media/Ionicons.ttf": "/static/media/Ionicons.3517aeaa34b2f8cd8eef.ttf",
+    "static/media/Roboto-Italic.ttf": "/static/media/Roboto-Italic.87f3afe16a8c3c370634.ttf",
+    "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
+    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/Roboto-Bold.ttf": "/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
+    "static/media/Feather.ttf": "/static/media/Feather.0f5d9cede2e831f3fc80.ttf",
+    "favicon.ico": "/favicon.ico",
+    "index.html": "/index.html",
+    "favicon-32.png": "/favicon-32.png",
+    "favicon-16.png": "/favicon-16.png",
+    "manifest.json": "/manifest.json",
+    "serve.json": "/serve.json",
+    "main.790f9534.js.map": "/static/js/main.790f9534.js.map",
+    "989.c54731e5.js.map": "/static/js/989.c54731e5.js.map"
+  },
+  "entrypoints": [
+    "static/js/989.c54731e5.js",
+    "static/js/main.790f9534.js"
+  ]
+}
