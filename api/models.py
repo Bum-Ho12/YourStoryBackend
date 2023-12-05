@@ -142,6 +142,7 @@ class Blog(models.Model):
     title = models.TextField(max_length=200)
     frontImage  = models.ImageField(blank=True)
     contentImage   = models.ManyToManyField(ImageFile,blank=True)
+    topic          = models.CharField(default='General',max_length=50)
     imageCopyRight = models.TextField(max_length= 100)
     owner       = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     story       = models.ManyToManyField(ContentSection,blank=True)

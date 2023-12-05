@@ -51,7 +51,7 @@ class BlogSerializer(serializers.ModelSerializer):
         ''' meta class'''
         model = Blog
         fields = ['id', 'title','owner','created_at','updated_at','likes','dislikes','contentImage',
-                    'imageCopyRight','story','frontImage','views','commission']
+                    'imageCopyRight','story','frontImage','views','commission','topic']
         extra_kwargs = {
             'frontImage': {
                 'required': False,

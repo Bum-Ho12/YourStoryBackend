@@ -1,7 +1,11 @@
 {
     "cSpell.words": [
+        "Cousine",
+        "psycopg",
         "robo",
         "roboto",
-        "whitenoise"
+        "staticfiles",
+        "whitenoise",
+        "wsgi"
     ]
 }

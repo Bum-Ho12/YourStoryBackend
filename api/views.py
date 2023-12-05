@@ -14,6 +14,19 @@ from .serializers import BlogSerializer,SubscriberSerializer,AccountSerializer
 
 # Create your views here.
 
+TOPICS = ['General',
+    'Technology','Mobile','Laptops','Music',
+    'Animation','Art','Movies','Sports',
+    'Cousine','Travel','Lifestyle','Politics',
+    'Education','Clothing','Brand','War','Games',
+    'Renovation','Philanthropy','Wealth','Business',
+    'Aviation','Automobiles','Trading and Economics',
+    'Religion and Faith','Health','Development',
+    'Beauty and Fashion','Physique','Culture',
+    'Exploration','Nature','Climate and Ecology',
+    'Space','Transport','Vacation'
+    ]
+
 
 
 def index(request):
@@ -297,6 +310,14 @@ def count_likes(request):
         return Response(status=status.HTTP_202_ACCEPTED)
     else:
         return Response('no content', status = status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+#pylint: disable= W0613
+def get_topics(request):
+    '''get all topics'''
+    return Response(data = TOPICS,status = status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny])

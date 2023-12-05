@@ -20,6 +20,7 @@ urlpatterns = [
     path('latest_blog/', views.get_latest_blog, name='latest_blog'),
     path('statistics/', views.get_statistics, name='statistics'),
     path('viewed/', views.count_views, name='viewed'),
+    path('topics/',views.get_topics, name='topics'),
     path('like/', views.count_likes, name='like'),
     path('dislike/', views.count_dislikes, name='dislike'),
 ]
