@@ -5,6 +5,7 @@
         "robo",
         "roboto",
         "staticfiles",
+        "supabase",
         "vercel",
         "whitenoise",
         "wsgi"

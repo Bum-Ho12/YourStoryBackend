@@ -118,7 +118,7 @@ class ImageFile(models.Model):
     class that handles Image data
     '''
     index = models.IntegerField(validators=[MinValueValidator(1000)], null=True)
-    media = models.ImageField()
+    media = models.URLField()
 
     def __str__(self):
         # pylint: disable = E1101:no-member
@@ -140,7 +140,7 @@ class Blog(models.Model):
     story,likes, dislikes, views, created_at,commission.
     '''
     title = models.TextField(max_length=200)
-    frontImage  = models.ImageField(blank=True)
+    frontImage  = models.URLField(blank=True)
     contentImage   = models.ManyToManyField(ImageFile,blank=True)
     topic          = models.CharField(default='General',max_length=50)
     imageCopyRight = models.TextField(max_length= 100)
